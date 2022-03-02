@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "cortex.fullname" . }}-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cortex.labels" . | nindent 4 }}
+data:
+  cortex.yaml: |
+    {{- tpl (toYaml .Values.config) . | nindent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "cortex.fullname" $ }}-runtime-config
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "cortex.labels" $ | nindent 4 }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+data:
+  runtime_config.yaml: |
+    {{- tpl (toYaml .runtime_config) $ | nindent 4 }}

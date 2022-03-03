@@ -12,7 +12,7 @@ clusterDomain: cluster.local
 
 tags:
   # -- Set to true to enable block storage memcached caching
-  blocks-storage-memcached: false
+  blocks-storage-memcached: true
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -1138,7 +1138,7 @@ store_gateway:
   env: []
 
 memcached-frontend:
-  enabled: false
+  enabled: true
   architecture: "high-availability"
   replicaCount: 2
   resources: {}

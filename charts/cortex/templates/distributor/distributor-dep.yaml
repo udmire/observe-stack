@@ -64,7 +64,7 @@ spec:
             - name: config
               mountPath: /etc/cortex
             - name: runtime-config
-              mountPath: /etc/cortex-runtime-config
+              mountPath: /etc/cortex/runtime
             - name: storage
               mountPath: "/data"
               subPath: {{ .Values.distributor.persistentVolume.subPath }}

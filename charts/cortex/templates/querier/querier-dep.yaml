@@ -52,7 +52,7 @@ spec:
           args:
             - "-target=querier"
             - "-config.file=/etc/cortex/cortex.yaml"
-            - "-querier.frontend-address={{ template "cortex.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}:{{ .Values.config.server.grpc_listen_port }}"
+            - "-querier.scheduler-address={{ template "cortex.fullname" . }}-query-scheduler-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}:{{ .Values.config.server.grpc_listen_port }}"
           {{- include "cortex.memcached" . | nindent 12}}
           {{- if .Values.minio.enabled }}
             - -blocks-storage.backend=s3

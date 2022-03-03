@@ -69,14 +69,14 @@ spec:
             - -blocks-storage.s3.access-key-id={{ .Values.minio.accessKey }}
             - -blocks-storage.s3.secret-access-key={{ .Values.minio.secretKey }}
             - -blocks-storage.s3.insecure=true
-            - -ruler.storage.s3.endpoint={{ .Release.Name }}-minio.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}:9000
+            - -ruler-storage.backend=s3
+            - -ruler-storage.s3.endpoint={{ .Release.Name }}-minio.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}:9000
             {{- with (index .Values.minio.buckets 1) }}
-            - -ruler.storage.s3.buckets={{ .name }}
-            {{- end -}}
-            - -ruler.storage.s3.access-key-id={{ .Values.minio.accessKey }}
-            - -ruler.storage.s3.secret-access-key={{ .Values.minio.secretKey }}
-            - -ruler.storage.s3.insecure=true
-            - -ruler.storage.s3.force-path-style=true
+            - -ruler-storage.s3.bucket-name={{ .name }}
+            {{- end }}
+            - -ruler-storage.s3.access-key-id={{ .Values.minio.accessKey }}
+            - -ruler-storage.s3.secret-access-key={{ .Values.minio.secretKey }}
+            - -ruler-storage.s3.insecure=true
             {{- end }}
           {{- range $key, $value := .Values.ruler.extraArgs }}
             - "-{{ $key }}={{ $value }}"

@@ -60,7 +60,7 @@ spec:
             - name: config
               mountPath: /etc/cortex
             - name: runtime-config
-              mountPath: /etc/cortex-runtime-config
+              mountPath: /etc/cortex/runtime
           ports:
             - name: http-metrics
               containerPort: {{ .Values.config.server.http_listen_port }}
